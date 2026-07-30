@@ -2,7 +2,7 @@
   "name": "chemometrics",
   "description": "Spectroscopy preprocessing, modeling, validation, and diagnostics with chemotools + scikit-learn.",
   "version": "0.1.0",
-  "author": { "name": "Alejandro Gutiérrez", "email": "alejandro@g-npd.com" },
+  "author": { "name": "Alejandro Gutiérrez", "email": "a.gutierrez@g-npd.com" },
   "homepage": "https://github.com/Gnpd/chemometrics-plugin",
   "license": "MIT"
 }

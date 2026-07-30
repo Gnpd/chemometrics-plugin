@@ -97,4 +97,4 @@ siblings by relative path only.
 
 The plugin ships under the `Gnpd` GitHub account — repo `Gnpd/chemometrics-plugin`
 (install: `/plugin marketplace add Gnpd/chemometrics-plugin`). Manifests and docs use the
-canonical author/owner email `alejandro@g-npd.com`.
+canonical author/owner email `a.gutierrez@g-npd.com`.

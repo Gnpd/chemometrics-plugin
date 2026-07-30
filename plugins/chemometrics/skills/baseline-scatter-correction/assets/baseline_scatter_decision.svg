@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 470" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; }
+    .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; }
+      .step { fill: #22362a; stroke: #6fbf87; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="410" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Baseline &amp; scatter: what to use</text>
+
+  <!-- baseline branch -->
+  <rect class="q" x="60" y="50" width="300" height="46" rx="6"/>
+  <text x="210" y="70" text-anchor="middle" class="t">BASELINE — additive background?</text>
+  <text x="210" y="86" text-anchor="middle" class="t" font-size="11">(drift, ATR contact, fluorescence)</text>
+
+  <path class="edge" d="M120 96 V120"/>
+  <text x="120" y="112" text-anchor="middle" class="lbl">automatic</text>
+  <rect class="step" x="30" y="120" width="180" height="34" rx="6"/>
+  <text x="120" y="142" text-anchor="middle" class="t">AirPLS / ArPLS (tune lam)</text>
+
+  <path class="edge" d="M210 96 V120"/>
+  <text x="230" y="112" text-anchor="middle" class="lbl">convex</text>
+  <rect class="step" x="220" y="120" width="130" height="34" rx="6"/>
+  <text x="285" y="142" text-anchor="middle" class="t">Rubberband</text>
+
+  <path class="edge" d="M300 96 V172"/>
+  <text x="330" y="130" text-anchor="middle" class="lbl">known points</text>
+  <rect class="step" x="180" y="172" width="230" height="34" rx="6"/>
+  <text x="295" y="194" text-anchor="middle" class="t">Polynomial / CubicSpline (indices)</text>
+
+  <rect class="step" x="30" y="172" width="140" height="34" rx="6"/>
+  <text x="100" y="194" text-anchor="middle" class="t">Linear (tilt)</text>
+  <path class="edge" d="M120 154 V172"/>
+
+  <!-- scatter branch -->
+  <rect class="q" x="460" y="50" width="300" height="46" rx="6"/>
+  <text x="610" y="70" text-anchor="middle" class="t">SCATTER — parallel offset/scale?</text>
+  <text x="610" y="86" text-anchor="middle" class="t" font-size="11">(particle size, path length)</text>
+
+  <path class="edge" d="M520 96 V120"/>
+  <text x="520" y="112" text-anchor="middle" class="lbl">default</text>
+  <rect class="step" x="450" y="120" width="150" height="34" rx="6"/>
+  <text x="525" y="142" text-anchor="middle" class="t">SNV</text>
+
+  <path class="edge" d="M700 96 V120"/>
+  <text x="700" y="112" text-anchor="middle" class="lbl">outlier peaks</text>
+  <rect class="step" x="620" y="120" width="150" height="34" rx="6"/>
+  <text x="695" y="142" text-anchor="middle" class="t">RNV (robust)</text>
+
+  <path class="edge" d="M560 154 V172"/>
+  <text x="560" y="168" text-anchor="middle" class="lbl">reference exists</text>
+  <rect class="step" x="450" y="172" width="150" height="34" rx="6"/>
+  <text x="525" y="194" text-anchor="middle" class="t">MSC</text>
+
+  <path class="edge" d="M700 154 V172"/>
+  <text x="700" y="168" text-anchor="middle" class="lbl">λ-dependent</text>
+  <rect class="step" x="620" y="172" width="150" height="34" rx="6"/>
+  <text x="695" y="194" text-anchor="middle" class="t">EMSC (+interferents)</text>
+
+  <text x="410" y="250" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">Apply baseline BEFORE scatter. Use ONE scatter method.</text>
+  <text x="410" y="272" text-anchor="middle" class="lbl">A 1st/2nd derivative removes additive/linear baselines — you may then skip explicit baseline correction.</text>
+  <text x="410" y="292" text-anchor="middle" class="lbl">MSC/EMSC learn a reference → keep in the Pipeline, fit on TRAIN only.</text>
+
+  <rect class="q" x="230" y="330" width="360" height="34" rx="6"/>
+  <text x="410" y="352" text-anchor="middle" class="t">Raman? median_filter FIRST to remove cosmic-ray spikes</text>
+  <rect class="q" x="230" y="378" width="360" height="34" rx="6"/>
+  <text x="410" y="400" text-anchor="middle" class="t">Tune lam with scripts/tune_baseline.py; compare with compare_corrections.py</text>
+</svg>

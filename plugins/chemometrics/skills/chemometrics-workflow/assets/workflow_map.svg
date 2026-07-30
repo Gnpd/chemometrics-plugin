@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 430" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .stage { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .split { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .pipe { fill: none; stroke: #4a8c5f; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .t { fill: #1a1a1a; } .own { fill: #555; font-size: 10.5px; font-style: italic; }
+    .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+    @media (prefers-color-scheme: dark) {
+      .stage { fill: #22362a; stroke: #6fbf87; } .split { fill: #3a3020; stroke: #d9b866; }
+      .pipe { stroke: #6fbf87; } .t { fill: #e8e8e8; } .own { fill: #aaa; } .lbl { fill: #aaa; }
+      .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 z" fill="#8a9aa8"/>
+    </marker>
+  </defs>
+  <text x="410" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Chemometrics workflow — five stages, one pipeline</text>
+
+  <rect class="split" x="40" y="52" width="180" height="40" rx="6"/>
+  <text x="130" y="70" text-anchor="middle" class="t">Load &amp; SPLIT FIRST</text>
+  <text x="130" y="86" text-anchor="middle" class="own">grouped/temporal if replicates</text>
+
+  <path class="edge" d="M220 72 H300"/>
+  <rect class="stage" x="300" y="52" width="180" height="40" rx="6"/>
+  <text x="390" y="70" text-anchor="middle" class="t">1. Explore (PCA)</text>
+  <text x="390" y="86" text-anchor="middle" class="own">modeling + diagnostics</text>
+
+  <path class="edge" d="M390 92 V126"/>
+
+  <rect x="150" y="126" width="520" height="120" rx="10" class="pipe"/>
+  <text x="410" y="144" text-anchor="middle" class="own" font-weight="bold">ONE scikit-learn Pipeline — fit on train only, CV refits per fold</text>
+
+  <rect class="stage" x="185" y="160" width="200" height="52" rx="6"/>
+  <text x="285" y="182" text-anchor="middle" class="t">2. Preprocess</text>
+  <text x="285" y="200" text-anchor="middle" class="own">spectral-preprocessing (+spokes)</text>
+
+  <path class="edge" d="M385 186 H435"/>
+  <rect class="stage" x="435" y="160" width="200" height="52" rx="6"/>
+  <text x="535" y="182" text-anchor="middle" class="t">3. Model — PLS / PLS-DA</text>
+  <text x="535" y="200" text-anchor="middle" class="own">chemometric-modeling · LVs by CV</text>
+
+  <path class="edge" d="M410 246 V280"/>
+
+  <rect class="stage" x="185" y="280" width="200" height="52" rx="6"/>
+  <text x="285" y="302" text-anchor="middle" class="t">4. Validate</text>
+  <text x="285" y="320" text-anchor="middle" class="own">chemometric-validation</text>
+
+  <path class="edge" d="M385 306 H435"/>
+  <rect class="stage" x="435" y="280" width="200" height="52" rx="6"/>
+  <text x="535" y="302" text-anchor="middle" class="t">5. Deploy — AD gate</text>
+  <text x="535" y="320" text-anchor="middle" class="own">model-diagnostics</text>
+
+  <text x="410" y="366" text-anchor="middle" class="lbl" font-weight="bold">Split first · one Pipeline · grouped CV for copies · LVs by CV (1-SE) · AD fit on train.</text>
+  <text x="410" y="388" text-anchor="middle" class="lbl">CV chooses hyperparameters; the untouched test set (RMSEP / metrics) confirms them.</text>
+  <text x="410" y="410" text-anchor="middle" class="lbl">Scaffold a correct-by-construction starter: scripts/scaffold_analysis.py</text>
+</svg>

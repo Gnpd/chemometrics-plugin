@@ -1,0 +1,25 @@
+# Example preprocessing spec for build_pipeline.py / preprocess.py.
+#
+# Each step: `type` (a key from REGISTRY in build_pipeline.py) + optional `params`.
+# The sentinel `$x_axis` is replaced at build time with the wavenumber/wavelength
+# array recovered from the data (CSV header). Remove `$x_axis` steps, or pass
+# integer indices instead, if you have no x-axis.
+#
+# This is a sensible ATR-FTIR quantitative recipe:
+#   region cut -> baseline -> scatter -> smoothing+derivative -> mean-centering.
+# See references/ordering_guide.md for why this order, and swap techniques using
+# references/technique_catalog.md.
+
+- type: range_cut
+  params: {start: 950, end: 1550, x_axis: $x_axis}
+
+- type: airpls
+  params: {lam: 100000.0}
+
+- type: snv
+
+- type: savgol_deriv
+  params: {window_length: 21, polyorder: 2, deriv: 1}
+
+- type: standard_scaler
+  params: {with_mean: true, with_std: false}

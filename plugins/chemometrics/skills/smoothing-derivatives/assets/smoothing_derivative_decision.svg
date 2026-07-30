@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="400" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Smoothing &amp; derivatives</text>
+
+  <rect class="q" x="250" y="46" width="300" height="34" rx="6"/>
+  <text x="400" y="68" text-anchor="middle" class="t">Cosmic-ray spikes (Raman)?</text>
+  <path class="edge" d="M550 63 H660"/>
+  <rect class="step" x="660" y="46" width="120" height="34" rx="6"/>
+  <text x="720" y="68" text-anchor="middle" class="t">MedianFilter first</text>
+  <path class="edge" d="M400 80 V104"/>
+
+  <rect class="q" x="250" y="104" width="300" height="46" rx="6"/>
+  <text x="400" y="124" text-anchor="middle" class="t">Need to resolve overlapping</text>
+  <text x="400" y="140" text-anchor="middle" class="t">bands or remove baseline?</text>
+
+  <path class="edge" d="M250 127 H120 V160"/>
+  <text x="180" y="122" text-anchor="middle" class="lbl">no, just noise</text>
+  <rect class="step" x="20" y="160" width="200" height="34" rx="6"/>
+  <text x="120" y="182" text-anchor="middle" class="t">SavitzkyGolayFilter</text>
+  <text x="120" y="212" text-anchor="middle" class="lbl">(or Whittaker / ModifiedSinc)</text>
+
+  <path class="edge" d="M550 127 H680 V160"/>
+  <text x="620" y="122" text-anchor="middle" class="lbl">yes</text>
+  <rect class="step" x="580" y="160" width="200" height="34" rx="6"/>
+  <text x="680" y="182" text-anchor="middle" class="t">SavitzkyGolay (deriv)</text>
+
+  <rect class="q" x="500" y="220" width="280" height="34" rx="6"/>
+  <text x="640" y="242" text-anchor="middle" class="t">deriv=1 offset  ·  deriv=2 slope+resolve</text>
+  <path class="edge" d="M680 194 V220"/>
+
+  <text x="400" y="300" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">Prefer the Savitzky-Golay DERIVATIVE over smooth-then-differentiate (one pass, one param set).</text>
+  <text x="400" y="322" text-anchor="middle" class="lbl">Window narrower than the narrowest peak. polyorder &gt; deriv. Larger window for 2nd derivative.</text>
+  <text x="400" y="344" text-anchor="middle" class="lbl">Derivatives amplify noise and produce real negatives — do NOT NonNegative-clip them.</text>
+  <text x="400" y="366" text-anchor="middle" class="lbl">A derivative removes additive/linear baselines — you may skip a separate baseline step.</text>
+  <text x="400" y="392" text-anchor="middle" class="lbl">Tune: scripts/tune_smoothing.py (window) · scripts/derivative_preview.py (order)</text>
+</svg>

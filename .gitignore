@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.joblib
+*.npy
+.venv/
+.DS_Store
+
+# Local-only working notes
+notes/
+
+# Local Claude Code settings (personal permission allowlist)
+.claude/settings.local.json

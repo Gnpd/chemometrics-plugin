@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="400" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Persisting a fitted pipeline</text>
+
+  <rect class="step" x="250" y="44" width="300" height="34" rx="6"/>
+  <text x="400" y="66" text-anchor="middle" class="t">Save the WHOLE Pipeline (prep + model)</text>
+
+  <rect class="q" x="270" y="100" width="260" height="34" rx="6"/>
+  <text x="400" y="122" text-anchor="middle" class="t">Where is the model going?</text>
+  <path class="edge" d="M400 78 V100"/>
+
+  <path class="edge" d="M270 117 H150 V158"/>
+  <text x="205" y="112" text-anchor="middle" class="lbl">reuse locally, same env</text>
+  <rect class="step" x="40" y="158" width="220" height="34" rx="6"/>
+  <text x="150" y="180" text-anchor="middle" class="t">joblib  (.joblib)</text>
+  <text x="150" y="208" text-anchor="middle" class="lbl">exact · fast · default</text>
+  <text x="150" y="224" text-anchor="middle" class="lbl">pickle: load only if trusted;</text>
+  <text x="150" y="240" text-anchor="middle" class="lbl">may break across versions</text>
+
+  <path class="edge" d="M530 117 H650 V158"/>
+  <text x="600" y="112" text-anchor="middle" class="lbl">share / deploy / archive</text>
+  <rect class="step" x="540" y="158" width="220" height="34" rx="6"/>
+  <text x="650" y="180" text-anchor="middle" class="t">OpenModels JSON (.json)</text>
+  <text x="650" y="208" text-anchor="middle" class="lbl">readable · pickle-free · safe</text>
+  <text x="650" y="224" text-anchor="middle" class="lbl">version-tolerant (warns)</text>
+  <text x="650" y="240" text-anchor="middle" class="lbl">needs openmodels + chemotools&#8805;0.2.2</text>
+
+  <rect class="step" x="200" y="286" width="400" height="34" rx="6"/>
+  <text x="400" y="308" text-anchor="middle" class="t">Write a .meta.json sidecar (library versions, LVs, x-axis)</text>
+  <path class="edge" d="M150 192 V303 H200"/>
+  <path class="edge" d="M650 192 V303 H600"/>
+
+  <rect class="step" x="200" y="334" width="400" height="34" rx="6"/>
+  <text x="400" y="356" text-anchor="middle" class="t">Guard every prediction with the applicability domain</text>
+  <path class="edge" d="M400 320 V334"/>
+
+  <text x="400" y="392" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">Default to joblib; export JSON the moment the model leaves your machine.</text>
+  <text x="400" y="412" text-anchor="middle" class="lbl">persist_model.py: save_model · load_model · convert · check · inspect  ·  Next: model-diagnostics (AD gate)</text>
+</svg>

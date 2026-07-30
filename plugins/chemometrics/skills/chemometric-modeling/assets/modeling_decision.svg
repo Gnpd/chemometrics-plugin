@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="400" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Choosing a chemometric model</text>
+
+  <rect class="q" x="280" y="46" width="240" height="34" rx="6"/>
+  <text x="400" y="68" text-anchor="middle" class="t">Do you have a target y?</text>
+
+  <path class="edge" d="M280 63 H120 V104"/>
+  <text x="190" y="58" text-anchor="middle" class="lbl">no / explore first</text>
+  <rect class="step" x="20" y="104" width="200" height="34" rx="6"/>
+  <text x="120" y="126" text-anchor="middle" class="t">PCA (sklearn)</text>
+  <text x="120" y="156" text-anchor="middle" class="lbl">scores/loadings; spot</text>
+  <text x="120" y="172" text-anchor="middle" class="lbl">outliers &amp; clusters</text>
+
+  <path class="edge" d="M400 80 V104"/>
+  <text x="470" y="98" text-anchor="middle" class="lbl">yes</text>
+  <rect class="q" x="280" y="104" width="240" height="34" rx="6"/>
+  <text x="400" y="126" text-anchor="middle" class="t">y continuous or categorical?</text>
+
+  <path class="edge" d="M320 138 V172"/>
+  <text x="270" y="160" text-anchor="middle" class="lbl">number</text>
+  <rect class="step" x="230" y="172" width="180" height="34" rx="6"/>
+  <text x="320" y="194" text-anchor="middle" class="t">PLS regression</text>
+
+  <path class="edge" d="M480 138 V172"/>
+  <text x="540" y="160" text-anchor="middle" class="lbl">class</text>
+  <rect class="step" x="430" y="172" width="180" height="34" rx="6"/>
+  <text x="520" y="194" text-anchor="middle" class="t">PLS-DA (one-hot+argmax)</text>
+  <text x="520" y="222" text-anchor="middle" class="lbl">alt: LDA on PLS scores</text>
+
+  <rect class="step" x="180" y="250" width="440" height="34" rx="6"/>
+  <text x="400" y="272" text-anchor="middle" class="t">Wire preprocessing + model into ONE Pipeline (fit on train only)</text>
+  <path class="edge" d="M320 206 V250"/>
+  <path class="edge" d="M520 206 V250"/>
+
+  <rect class="step" x="180" y="298" width="440" height="34" rx="6"/>
+  <text x="400" y="320" text-anchor="middle" class="t">Choose n_components (LVs) by CV — 1-SE rule, never training fit</text>
+  <path class="edge" d="M400 284 V298"/>
+
+  <text x="400" y="366" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">PLS projects wide, collinear spectra onto a few LVs that covary with y.</text>
+  <text x="400" y="388" text-anchor="middle" class="lbl">Interpret / prune bands with VIP (&gt;1) or SR — then re-fit and re-validate.</text>
+  <text x="400" y="410" text-anchor="middle" class="lbl">fit_model.py · select_components.py · feature_importance.py</text>
+  <text x="400" y="430" text-anchor="middle" class="lbl">Next: chemometric-validation (metrics, permutation) · model-diagnostics (applicability domain)</text>
+</svg>

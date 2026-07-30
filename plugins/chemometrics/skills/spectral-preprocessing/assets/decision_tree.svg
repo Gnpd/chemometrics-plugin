@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 620" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .box { fill: #f4f6f8; stroke: #5b7fa6; stroke-width: 1.5; rx: 6; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; }
+    .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .box { fill: #26313a; stroke: #7ba3cc; }
+      .step { fill: #22362a; stroke: #6fbf87; }
+      .q { fill: #3a3020; stroke: #d9b866; }
+      .t { fill: #e8e8e8; }
+      .lbl { fill: #aaa; }
+      .edge { stroke: #6a7a88; }
+    }
+  </style>
+
+  <text x="430" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">
+    Choosing spectral preprocessing steps
+  </text>
+
+  <!-- top: always -->
+  <rect class="box" x="300" y="44" width="260" height="34" rx="6"/>
+  <text x="430" y="66" text-anchor="middle" class="t">1. Convert units? (physics.IntensityConversion)</text>
+  <path class="edge" d="M430 78 V100"/>
+
+  <rect class="box" x="300" y="100" width="260" height="34" rx="6"/>
+  <text x="430" y="122" text-anchor="middle" class="t">2. Cut to informative region (RangeCut)</text>
+  <path class="edge" d="M430 134 V158"/>
+
+  <!-- Q: baseline -->
+  <rect class="q" x="290" y="158" width="280" height="46" rx="6"/>
+  <text x="430" y="178" text-anchor="middle" class="t">Sloping / curved offset that</text>
+  <text x="430" y="194" text-anchor="middle" class="t">differs per spectrum?</text>
+
+  <path class="edge" d="M290 181 H150 V214"/>
+  <text x="220" y="176" text-anchor="middle" class="lbl">smooth/curved</text>
+  <rect class="step" x="40" y="214" width="220" height="34" rx="6"/>
+  <text x="150" y="236" text-anchor="middle" class="t">AirPLS / ArPLS (tune lam)</text>
+
+  <path class="edge" d="M570 181 H710 V214"/>
+  <text x="640" y="176" text-anchor="middle" class="lbl">known points / convex</text>
+  <rect class="step" x="600" y="214" width="230" height="34" rx="6"/>
+  <text x="715" y="236" text-anchor="middle" class="t">Polynomial / Linear / Rubberband</text>
+
+  <path class="edge" d="M430 204 V236"/>
+  <text x="470" y="222" text-anchor="middle" class="lbl">none</text>
+
+  <!-- Q: scatter -->
+  <rect class="q" x="290" y="236" width="280" height="46" rx="6"/>
+  <text x="430" y="256" text-anchor="middle" class="t">Spectra parallel but offset /</text>
+  <text x="430" y="272" text-anchor="middle" class="t">scaled? (scatter, path length)</text>
+
+  <path class="edge" d="M290 259 H150 V292"/>
+  <text x="215" y="254" text-anchor="middle" class="lbl">no reference</text>
+  <rect class="step" x="60" y="292" width="180" height="34" rx="6"/>
+  <text x="150" y="314" text-anchor="middle" class="t">SNV / RNV</text>
+
+  <path class="edge" d="M570 259 H710 V292"/>
+  <text x="645" y="254" text-anchor="middle" class="lbl">have reference</text>
+  <rect class="step" x="620" y="292" width="190" height="34" rx="6"/>
+  <text x="715" y="314" text-anchor="middle" class="t">MSC / EMSC</text>
+
+  <path class="edge" d="M430 282 V314"/>
+
+  <!-- Q: noise / resolution -->
+  <rect class="q" x="290" y="314" width="280" height="46" rx="6"/>
+  <text x="430" y="334" text-anchor="middle" class="t">Noisy, or need to resolve</text>
+  <text x="430" y="350" text-anchor="middle" class="t">overlapping bands?</text>
+
+  <path class="edge" d="M290 337 H150 V370"/>
+  <text x="210" y="332" text-anchor="middle" class="lbl">just noise</text>
+  <rect class="step" x="40" y="370" width="220" height="34" rx="6"/>
+  <text x="150" y="392" text-anchor="middle" class="t">SavitzkyGolayFilter / Whittaker</text>
+
+  <path class="edge" d="M570 337 H710 V370"/>
+  <text x="645" y="332" text-anchor="middle" class="lbl">resolve + baseline</text>
+  <rect class="step" x="600" y="370" width="230" height="34" rx="6"/>
+  <text x="715" y="392" text-anchor="middle" class="t">SavitzkyGolay deriv (1st/2nd)</text>
+
+  <path class="edge" d="M430 360 V392"/>
+  <text x="466" y="378" text-anchor="middle" class="lbl">neither</text>
+
+  <!-- scaling -->
+  <rect class="box" x="300" y="392" width="260" height="34" rx="6"/>
+  <text x="430" y="414" text-anchor="middle" class="t">Scale / mean-center (StandardScaler)</text>
+  <path class="edge" d="M430 426 V450"/>
+
+  <rect class="step" x="300" y="450" width="260" height="34" rx="6"/>
+  <text x="430" y="472" text-anchor="middle" class="t" font-weight="bold">Model: PCA / PLS / classifier</text>
+
+  <!-- footnotes -->
+  <text x="430" y="520" text-anchor="middle" class="lbl">Different instruments / shifted x-axis → calibration-transfer skill</text>
+  <text x="430" y="540" text-anchor="middle" class="lbl">Variance unrelated to target y → projection (OSC / EPO)</text>
+  <text x="430" y="560" text-anchor="middle" class="lbl">Fit every learning step on TRAIN only; a Pipeline enforces this</text>
+  <text x="430" y="580" text-anchor="middle" class="lbl">Use the minimal set — stacking baseline + scatter + 2nd derivative often over-processes</text>
+</svg>

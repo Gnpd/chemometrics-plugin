@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 430" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .warn { fill: #fbe9e7; stroke: #c0603a; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .warn { fill: #3a2420; stroke: #d98a6a; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="410" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Spectral augmentation — what to simulate</text>
+
+  <text x="410" y="52" text-anchor="middle" class="lbl" font-size="12">Pick the transformer(s) matching the real variation your model must tolerate:</text>
+
+  <rect class="step" x="30" y="70" width="240" height="40" rx="6"/>
+  <text x="150" y="86" text-anchor="middle" class="t">Detector noise</text>
+  <text x="150" y="102" text-anchor="middle" class="lbl">AddNoise (gaussian/poisson/exp)</text>
+
+  <rect class="step" x="290" y="70" width="240" height="40" rx="6"/>
+  <text x="410" y="86" text-anchor="middle" class="t">Run-to-run baseline drift</text>
+  <text x="410" y="102" text-anchor="middle" class="lbl">BaselineShift</text>
+
+  <rect class="step" x="550" y="70" width="240" height="40" rx="6"/>
+  <text x="670" y="86" text-anchor="middle" class="t">Intensity / gain / path length</text>
+  <text x="670" y="102" text-anchor="middle" class="lbl">SpectrumScale</text>
+
+  <rect class="step" x="30" y="122" width="240" height="40" rx="6"/>
+  <text x="150" y="138" text-anchor="middle" class="t">Resolution differences</text>
+  <text x="150" y="154" text-anchor="middle" class="lbl">GaussianBroadening (sigma)</text>
+
+  <rect class="step" x="290" y="122" width="240" height="40" rx="6"/>
+  <text x="410" y="138" text-anchor="middle" class="t">Calibration jitter (coarse)</text>
+  <text x="410" y="154" text-anchor="middle" class="lbl">IndexShift</text>
+
+  <rect class="step" x="550" y="122" width="240" height="40" rx="6"/>
+  <text x="670" y="138" text-anchor="middle" class="t">Calibration drift (sub-pixel)</text>
+  <text x="670" y="154" text-anchor="middle" class="lbl">FractionalShift</text>
+
+  <text x="410" y="196" text-anchor="middle" class="t" font-size="13" font-weight="bold">The rules that matter more than the choice:</text>
+
+  <rect class="warn" x="80" y="210" width="660" height="30" rx="6"/>
+  <text x="410" y="230" text-anchor="middle" class="t">1. Augment TRAIN only — never validation/test.</text>
+  <rect class="warn" x="80" y="246" width="660" height="30" rx="6"/>
+  <text x="410" y="266" text-anchor="middle" class="t">2. Keep all copies of a sample in the SAME CV fold (GroupKFold) — else leakage.</text>
+
+  <rect class="q" x="80" y="288" width="660" height="26" rx="6"/>
+  <text x="410" y="306" text-anchor="middle" class="t">3. Augment BEFORE preprocessing (it simulates raw-measurement variation).</text>
+  <rect class="q" x="80" y="320" width="660" height="26" rx="6"/>
+  <text x="410" y="338" text-anchor="middle" class="t">4. It's a data step (N → K·N), not a Pipeline step. Labels are tiled (label-preserving).</text>
+  <rect class="q" x="80" y="352" width="660" height="26" rx="6"/>
+  <text x="410" y="370" text-anchor="middle" class="t">5. Match magnitude to reality; verify with preview_augmentations.py.  6. Seed for reproducibility.</text>
+
+  <text x="410" y="404" text-anchor="middle" class="lbl">Expand: scripts/augment.py · Calibrate magnitudes: scripts/preview_augmentations.py</text>
+</svg>

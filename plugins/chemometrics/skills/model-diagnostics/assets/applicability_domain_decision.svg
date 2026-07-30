@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .warn { fill: #f6e3e3; stroke: #c05a5a; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .warn { fill: #3a2222; stroke: #d98a8a; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="400" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Is a new spectrum safe to predict?</text>
+
+  <rect class="step" x="230" y="44" width="340" height="34" rx="6"/>
+  <text x="400" y="66" text-anchor="middle" class="t">Fit T² + Q limits on the TRAINING model</text>
+
+  <rect class="q" x="250" y="98" width="300" height="34" rx="6"/>
+  <text x="400" y="120" text-anchor="middle" class="t">Q-residual over its limit?</text>
+  <path class="edge" d="M400 78 V98"/>
+
+  <path class="edge" d="M550 115 H700 V150"/>
+  <text x="625" y="110" text-anchor="middle" class="lbl">yes</text>
+  <rect class="warn" x="600" y="150" width="190" height="46" rx="6"/>
+  <text x="695" y="170" text-anchor="middle" class="t">OUT — new structure</text>
+  <text x="695" y="187" text-anchor="middle" class="lbl">model can't represent it</text>
+
+  <path class="edge" d="M400 132 V156"/>
+  <text x="345" y="150" text-anchor="middle" class="lbl">no</text>
+  <rect class="q" x="250" y="156" width="300" height="34" rx="6"/>
+  <text x="400" y="178" text-anchor="middle" class="t">Hotelling T² over its limit?</text>
+
+  <path class="edge" d="M550 173 H700 V210"/>
+  <text x="625" y="168" text-anchor="middle" class="lbl">yes</text>
+  <rect class="warn" x="600" y="210" width="190" height="46" rx="6"/>
+  <text x="695" y="230" text-anchor="middle" class="t">OUT — extreme scores</text>
+  <text x="695" y="247" text-anchor="middle" class="lbl">extrapolation in-model</text>
+
+  <path class="edge" d="M400 190 V214"/>
+  <text x="345" y="208" text-anchor="middle" class="lbl">no</text>
+  <rect class="step" x="270" y="214" width="260" height="34" rx="6"/>
+  <text x="400" y="236" text-anchor="middle" class="t">INSIDE domain → predict &amp; return</text>
+
+  <text x="400" y="290" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">T² = distance WITHIN the model plane · Q = distance OFF it. Flag if outside EITHER.</text>
+  <text x="400" y="312" text-anchor="middle" class="lbl">Fit the AD on training data only — it is part of the deployed model.</text>
+  <text x="400" y="334" text-anchor="middle" class="lbl">confidence (0.95 default) trades false alarms vs. missed extrapolations.</text>
+  <text x="400" y="356" text-anchor="middle" class="lbl">In-domain ≠ well-predicted — validation metrics still apply.</text>
+  <text x="400" y="382" text-anchor="middle" class="lbl">Also available: Leverage (influence) · StudentizedResiduals (y-outliers) · DModX (SIMCA)</text>
+  <text x="400" y="404" text-anchor="middle" class="lbl">scripts/applicability_domain.py  ·  see references/applicability_domain.md</text>
+</svg>

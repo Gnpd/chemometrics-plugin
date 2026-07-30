@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="system-ui, sans-serif" font-size="13">
+  <style>
+    .q { fill: #fff6e6; stroke: #c99a3a; stroke-width: 1.5; }
+    .step { fill: #e7f0e9; stroke: #4a8c5f; stroke-width: 1.5; }
+    .t { fill: #1a1a1a; } .lbl { fill: #555; font-size: 11px; font-style: italic; }
+    .edge { stroke: #8a9aa8; stroke-width: 1.3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .q { fill: #3a3020; stroke: #d9b866; } .step { fill: #22362a; stroke: #6fbf87; }
+      .t { fill: #e8e8e8; } .lbl { fill: #aaa; } .edge { stroke: #6a7a88; }
+    }
+  </style>
+  <text x="400" y="26" text-anchor="middle" class="t" font-size="16" font-weight="bold">Calibration transfer &amp; axis alignment</text>
+
+  <rect class="q" x="230" y="48" width="340" height="46" rx="6"/>
+  <text x="400" y="68" text-anchor="middle" class="t">Do the spectra share the same</text>
+  <text x="400" y="84" text-anchor="middle" class="t">x-axis grid (same wavenumbers)?</text>
+
+  <path class="edge" d="M230 71 H110 V110"/>
+  <text x="170" y="66" text-anchor="middle" class="lbl">no — grids differ</text>
+  <rect class="step" x="20" y="110" width="180" height="34" rx="6"/>
+  <text x="110" y="132" text-anchor="middle" class="t">XAxisInterpolator</text>
+  <text x="110" y="160" text-anchor="middle" class="lbl">align first (mind NaN fill!)</text>
+
+  <path class="edge" d="M400 94 V118"/>
+  <text x="430" y="110" text-anchor="middle" class="lbl">yes</text>
+
+  <rect class="q" x="230" y="118" width="340" height="46" rx="6"/>
+  <text x="400" y="138" text-anchor="middle" class="t">Model underperforms across</text>
+  <text x="400" y="154" text-anchor="middle" class="t">instruments? Have transfer standards?</text>
+
+  <path class="edge" d="M300 164 V196"/>
+  <text x="300" y="184" text-anchor="middle" class="lbl">uniform difference</text>
+  <rect class="step" x="200" y="196" width="200" height="34" rx="6"/>
+  <text x="300" y="218" text-anchor="middle" class="t">DirectStandardization</text>
+
+  <path class="edge" d="M500 164 V196"/>
+  <text x="500" y="184" text-anchor="middle" class="lbl">λ-dependent difference</text>
+  <rect class="step" x="410" y="196" width="270" height="34" rx="6"/>
+  <text x="545" y="218" text-anchor="middle" class="t">PiecewiseDirectStandardization</text>
+
+  <text x="400" y="272" text-anchor="middle" class="lbl" font-size="13" font-weight="bold">Align grids BEFORE standardization; both come early in the pipeline.</text>
+  <text x="400" y="294" text-anchor="middle" class="lbl">DS/PDS need transfer standards measured on BOTH instruments: fit(X_target, X_source=X_source).</text>
+  <text x="400" y="316" text-anchor="middle" class="lbl">XAxisInterpolator uses metadata routing — x_axis can be shared (1-D) or per-sample (2-D).</text>
+  <text x="400" y="338" text-anchor="middle" class="lbl">Nuisance from a measured parameter (temp/humidity), not an instrument swap → projection (EPO/OSC).</text>
+  <text x="400" y="366" text-anchor="middle" class="lbl">Demo/compare: scripts/transfer_demo.py · Align: scripts/align_axes.py</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "name": "chemometrics-marketplace",
+  "owner": { "name": "Alejandro Gutiérrez", "email": "a.gutierrez@g-npd.com" },
+  "plugins": [
+    {
+      "name": "chemometrics",
+      "source": "./plugins/chemometrics",
+      "description": "Spectroscopy preprocessing, modeling, validation, and diagnostics with chemotools + scikit-learn.",
+      "category": "data-science"
+    }
+  ]
+}

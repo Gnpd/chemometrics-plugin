@@ -1,5 +1,7 @@
 # chemometrics-plugin
 
+<img src="plugins/chemometrics/chemometrics-plugin.svg" alt="chemometrics plugin logo" width="96" />
+
 A Claude Code **marketplace** hosting the **`chemometrics`** plugin — Agent Skills, slash commands, and a subagent that guide a full chemometrics workflow on spectroscopy data (IR / NIR / Raman / ATR-FTIR / UV-Vis) with [`chemotools`](https://pypi.org/project/chemotools/) and [`scikit-learn`](https://pypi.org/project/scikit-learn/).
 
 The plugin itself lives at [`plugins/chemometrics/`](plugins/chemometrics/). This repo root is the marketplace ([`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)).

@@ -1,5 +1,7 @@
 # chemometrics (Claude Code plugin)
 
+<img src="chemometrics-plugin.svg" alt="chemometrics plugin logo" width="96" />
+
 Agent Skills + slash commands + a subagent for an end-to-end chemometrics workflow on
 spectroscopy data, built on [`chemotools`](https://pypi.org/project/chemotools/) + [`scikit-learn`](https://pypi.org/project/scikit-learn/).
 

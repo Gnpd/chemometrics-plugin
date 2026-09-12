@@ -1,4 +1,4 @@
-# <img src="plugins/chemometrics/chemometrics-plugin.svg" alt="" width="32" align="center" /> chemometrics-plugin
+# <img src="plugins/chemometrics/chemometrics-plugin.svg" alt="" width="64" align="center" /> chemometrics-plugin
 
 A Claude Code **marketplace** hosting the **`chemometrics`** plugin — Agent Skills, slash commands, and a subagent that guide a full chemometrics workflow on spectroscopy data (IR / NIR / Raman / ATR-FTIR / UV-Vis) with [`chemotools`](https://pypi.org/project/chemotools/) and [`scikit-learn`](https://pypi.org/project/scikit-learn/).
 
